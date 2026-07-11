@@ -1,1 +1,34 @@
-<p>register works!</p>
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>Create Account ⋆˚꩜｡</h2>
+        <p class="subtitle">Get Started Today</p>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input type="text" formControlName="name" placeholder="Full Name please!" required />
+                <small *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')">Required</small>
+            </div>
+
+            <div class="form-group">
+                <input type="email" formControlName="email" placeholder="Email Address!" required />
+                <small *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')">Email is required.</small>
+                <small *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')">Please enter a valid email.</small>
+            </div>
+
+            <div class="form-group">
+                <input type="password" formControlName="password" placeholder="8 characters minimum please!" required />
+                <small *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')">Required</small>
+                <small *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('password')">Password must be at least 8 characters.</small>
+            </div>
+
+            <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">
+                Sign Up
+            </button>
+
+            <p class="footer-text">
+                Already have an account?
+                <a routerLink="/login">Login here!</a>
+            </p>
+        </form>
+    </div>
+</div>

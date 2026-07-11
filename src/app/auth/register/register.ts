@@ -20,6 +20,8 @@ export class Register {
   }
 
   onSubmit(){
-    
+    ///if(!this.registerForm.invalid){
+      console.log(this.registerForm.value);
+    ///}
   }
 }
