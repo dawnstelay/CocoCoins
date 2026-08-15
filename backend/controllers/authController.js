@@ -69,7 +69,7 @@ exports.getUserInfo = async (req, res) => {
     } catch (err) {
         res
             .status
-            .json({ message: "Error finidng user", error: err.message});
+            .json({ message: "Error finding user", error: err.message});
 
     }
 };
