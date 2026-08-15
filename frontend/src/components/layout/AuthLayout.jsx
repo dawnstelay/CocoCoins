@@ -3,12 +3,12 @@ import monkey from "../../assets/monkey.png";
 
 const AuthLayout = ({ children }) => {
     return (
-        <div className="gradient flex flex-col items-center text-center h-screen">
+        <div className="gradient flex flex-col items-center text-center min-h-screen">
             <div className="w-screen flex justify-center p-8">
 
                 <img
                     src={monkey}
-                    className="w-[50%] lg:w-[90%] shadow-lg shadow-blue-400/15"
+                    className="w-[50%] lg:w-[20%] shadow-lg shadow-blue-400/15"
                 />
             </div>
 
