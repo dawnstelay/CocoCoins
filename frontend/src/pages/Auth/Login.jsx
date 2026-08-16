@@ -1,11 +1,13 @@
 import React from "react"
 import AuthLayout from "../../components/layout/AuthLayout"
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Input from "../../components/inputs/input";
 import { validateEmail } from "../../utils/helper";
-
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from "../../context/userContext";
 
 
 const Login = () => {
@@ -15,15 +17,17 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => { 
+    const { updateUser } = useContext(UserContext);
+
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        if(!validateEmail(email)) {
+        if (!validateEmail(email)) {
             setError("Please enter a valid email address.");
             return;
-        } 
+        }
 
-        if(!password) {
+        if (!password) {
             setError("Please enter the password.");
             return;
         }
@@ -31,7 +35,26 @@ const Login = () => {
         setError("");
 
         //Login API
-    }
+        try {
+            const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+                email,
+                password,
+            });
+            const { token, user } = response.data;
+
+            if (token) {
+                localStorage.setItem("token", token);
+                updateUser(user);
+                navigate("/home");
+            }
+        } catch (error) {
+            if (error.repsonse && error.response.data.message) {
+                setError(error.response.data.message);
+            } else {
+                setError("Something went wrong. Please try again.");
+            };
+        };
+    };
 
     return (
         <AuthLayout>
@@ -66,7 +89,7 @@ const Login = () => {
                         <p className="text-[13px] text-slate-400 mt-3">
                             Don't have an account? {" "}
                             <Link className="text-blue-200 underline" to="/register">
-                            Register Now!
+                                Register Now!
                             </Link>
                         </p>
                     </form>
