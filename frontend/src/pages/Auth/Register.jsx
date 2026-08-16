@@ -17,9 +17,10 @@ const Register = () => {
     const [password, setPassword] = useState("");
 
     const [error, setError] = useState(null);
+    const { updateUser } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const { updateUser } = useContext(UserContext);
+  
 
     const handleRegister = async (e) => {
         e.preventDefault();
