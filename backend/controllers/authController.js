@@ -7,15 +7,15 @@ const generateToken = (id) => {
 
 exports.registerUser = async (req, res) => {
     const { fullName, email, password, profileImageUrl } = req.body;
-    
-    if (!fullName || !email || !password){
-        return res.status(400).json({message: "All fields are required"});
+
+    if (!fullName || !email || !password) {
+        return res.status(400).json({ message: "All fields are required" });
     }
 
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: "Email already in use"});
+            return res.status(400).json({ message: "Email already in use" });
         }
 
         const user = await User.create({
@@ -52,10 +52,10 @@ exports.loginUser = async (req, res) => {
             user,
             token: generateToken(user._id),
         });
-    } catch(err) {
+    } catch (err) {
         res
             .status
-            .json({ message: "Error logging in", error: err.message});
+            .json({ message: "Error logging in", error: err.message });
     }
 };
 exports.getUserInfo = async (req, res) => {
@@ -69,7 +69,7 @@ exports.getUserInfo = async (req, res) => {
     } catch (err) {
         res
             .status
-            .json({ message: "Error finding user", error: err.message});
+            .json({ message: "Error finding user", error: err.message });
 
     }
 };
