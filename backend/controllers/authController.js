@@ -2,7 +2,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIm: "1h" });
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
 
 exports.registerUser = async (req, res) => {
@@ -60,7 +60,7 @@ exports.loginUser = async (req, res) => {
 };
 exports.getUserInfo = async (req, res) => {
     try {
-        const user = await User.findbyId(req.user.id).select("-password");
+        const user = await User.findById(req.user.id).select("-password");
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }

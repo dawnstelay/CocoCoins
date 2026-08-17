@@ -8,6 +8,7 @@ import ProfilePhotoSelector from "../../components/inputs/profilephotoselector";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
+import uploadImage from "../../utils/uploadImage";
 
 
 const Register = () => {
@@ -48,7 +49,7 @@ const Register = () => {
         try {
 
             if (profilePic) {
-                const imgUploadRes = await UploadImage(profilePic);
+                const imgUploadRes = await uploadImage(profilePic);
                 profileImageUrl = imgUploadRes.imageUrl || "";
             }
             const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
@@ -63,7 +64,7 @@ const Register = () => {
             if (token) {
                 localStorage.setItem("token", token);
                 updateUser(user);
-                navigate("/'home");
+                navigate("/home");
             }
         } catch (error) {
             if (error.response && error.response.data.message) {
