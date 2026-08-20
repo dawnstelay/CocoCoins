@@ -30,3 +30,4 @@ const Navbar = ({ activeMenu }) => {
         </div>
     )
 }
+export default Navbar;
