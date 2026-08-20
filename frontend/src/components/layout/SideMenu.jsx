@@ -3,6 +3,7 @@ import { SIDE_MENU_DATA } from "../../utils/data";
 import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import CharAvatar from "../CharAvatar";
 
 
 const SideMenu = ({ activeMenu }) => {
@@ -30,23 +31,29 @@ const SideMenu = ({ activeMenu }) => {
             <div className="flex flex-col items-center justify-center gap-3 mt-3 mb-7">
                 {user?.profileImageUrl ? (
                     <img
-                        src={user?.profileImageUrl || ""}
+                        src={user.profileImageUrl}
                         alt="Profile Image"
-                        className="w-20 h-20 bg-slate-400 rounded-full"
-                    />) : <></>}
+                        className="w-20 h-20 bg-slate-400 rounded-full object-cover"
+                    />) : (
+                    <CharAvatar
+                        fullName={user?.fullName}
+                        width="w-20"
+                        height="h-20"
+                        style="text-xl"
+                    />
+                )}
 
                 <h3 className="text-gray-800 font-medium leading-6">
-                    {user?.fullName || ""}
+                    {user.fullName}
                 </h3>
             </div>
 
             {SIDE_MENU_DATA.map((item, index) => (
-                <button 
-                key={`menu_${index}`}
-                className={`w-full flex items-center gap-4 text-[15px] ${
-                    activeMenu == item.label ? "text-white bg-blue-400" : ""
-                } py-3 px-6 rounded-lg mb-3`}
-                onClick={() => handleClick(item.path)}
+                <button
+                    key={`menu_${index}`}
+                    className={`w-full flex items-center gap-4 text-[15px] ${activeMenu == item.label ? "text-white bg-blue-400" : ""
+                        } py-3 px-6 rounded-lg mb-3`}
+                    onClick={() => handleClick(item.path)}
                 >
                     <item.icon className="text-xl" />
                     {item.label}
