@@ -3,7 +3,7 @@ import { SIDE_MENU_DATA } from "../../utils/data";
 import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import CharAvatar from "../CharAvatar";
+import CharAvatar from "../cards/CharAvatar";
 
 
 const SideMenu = ({ activeMenu }) => {
