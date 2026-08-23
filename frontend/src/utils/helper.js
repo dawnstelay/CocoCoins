@@ -18,7 +18,7 @@ export const getInitials = (name) => {
 export const addThousandsSeparator = (num) => {
     if (num == null || isNaN(num)) return "";
 
-    const [integerPart, fractionPart] = num.toString().split(".");
+    const [integerPart, fractionalPart] = num.toString().split(".");
     const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
     return fractionalPart
