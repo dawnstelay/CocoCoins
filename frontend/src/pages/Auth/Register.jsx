@@ -122,13 +122,13 @@ const Register = () => {
 
                     {error && <p className="text-red-500 text-xs pb-2">{error}</p>}
 
-                    <button type="submit" className="w-full font-medium text-white bg-blue-400 shadow-lg shadow-blue-600/5 p-[10px] rounded-md my-1 hover:bg-blue-600/15 hover:text-blue-600">
+                    <button type="submit" className="cursor-pointer w-full font-medium text-white bg-blue-400 shadow-lg shadow-blue-600/5 p-[10px] rounded-md my-1 hover:bg-blue-600/15 hover:text-blue-600">
                         Sign Up
                     </button>
 
                     <p className="text-[13px] text-slate-400 mt-3">
                         Already have an account? {" "}
-                        <Link className="text-blue-200 underline" to="/login">
+                        <Link className="cursor-pointer text-blue-200 underline" to="/login">
                             Login here.
                         </Link>
                     </p>
