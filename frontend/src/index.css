@@ -2,6 +2,14 @@
 
 @theme {
     --breakpoint-3xl: 1920px;
+
+    /*color-palette*/
+    --evergreen: #002626;
+    --ocean: #24bdad;
+    --cyan: #a4fbf7;
+    --frozen: #d5fff2;
+    --shadow: #2a2827;
+
 }
 
 
